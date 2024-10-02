@@ -51,6 +51,7 @@
             this.bVer.TabIndex = 1;
             this.bVer.Text = "Ver registros";
             this.bVer.UseVisualStyleBackColor = true;
+            this.bVer.Click += new System.EventHandler(this.bVer_Click);
             // 
             // lBregistros
             // 

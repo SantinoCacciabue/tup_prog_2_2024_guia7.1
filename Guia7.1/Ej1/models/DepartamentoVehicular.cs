@@ -9,7 +9,7 @@ namespace Ej1.models
 {
     internal class DepartamentoVehicular
     {
-        ArrayList registros = new ArrayList();
+        List<RegistroVehiculo> registros = new List<RegistroVehiculo>();
         public int CantidadRegistros
         {
             get { return registros.Count; }
@@ -22,7 +22,7 @@ namespace Ej1.models
         }
         public RegistroVehiculo VerRegistro(int i)
         {
-            return registros[i] as RegistroVehiculo;
+            return registros[i];
         }
     }
 }

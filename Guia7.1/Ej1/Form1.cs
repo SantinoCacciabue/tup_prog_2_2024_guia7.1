@@ -17,7 +17,7 @@ namespace Ej1
         {
             InitializeComponent();
         }
-
+        DepartamentoVehicular d = new DepartamentoVehicular();
         private void bAgregar_Click(object sender, EventArgs e)
         {
             Agregar agregar = new Agregar();
@@ -31,7 +31,7 @@ namespace Ej1
                     p = new Persona(dni, nombre);
                     string serie = agregar.tBserie.Text;
                     string patente = agregar.tBpatente.Text;
-                    RegistroVehiculo r = new RegistroVehiculo(patente, serie, p);
+                    d.RegistrarVehiculo(p, patente, serie);
                 }
                 catch(RangoDniIncorrectoException ex)
                 {
@@ -41,6 +41,15 @@ namespace Ej1
                 {
                     MessageBox.Show("Error\n" + ex.Message);
                 }
+            }
+        }
+
+        private void bVer_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < d.CantidadRegistros; i++)
+            {
+                RegistroVehiculo a = d.VerRegistro(i);
+                lBregistros.Items.Add(a.VerDetalle());
             }
         }
     }
