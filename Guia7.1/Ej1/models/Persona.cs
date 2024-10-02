@@ -13,18 +13,11 @@ namespace Ej1.models
         {
             get { return dni; }
             set
-            {
-                try
-                {                   
+            {                 
                     if(value < 1000000)
                     {
                         throw new RangoDniIncorrectoException();
                     }
-                }
-                catch(InvalidOperationException ex)
-                {
-                    throw new RangoDniIncorrectoException("El dni debe ser mayor a un millón", ex);
-                }
                 dni = value;
             }
         }

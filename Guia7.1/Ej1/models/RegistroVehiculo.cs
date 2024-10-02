@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Ej1.models
@@ -16,30 +17,13 @@ namespace Ej1.models
             Serie = serie;
             Patente = patente;
             propietario = p;
-            bool pat = true;
-            string caracteres = Patente.Substring(0, 3);
-            for (int j = 0; j < caracteres.Length; j++)
+            string pat = patente.Replace("-","").Trim().ToUpper();
+            Match m = Regex.Match(pat, @"^[A-Z]{3}\d{3}$");
+            if (!m.Success)
             {
-                char ch = caracteres[j];
-                pat &= Char.IsLetter(ch);
+                throw new FormatoPatenteNoValidaException("Patente invalida");
             }
-            caracteres = Patente.Substring(3, 3);
-            for (int j = 0; j < caracteres.Length; j++)
-            {
-                char ch = caracteres[j];
-                pat &= Char.IsDigit(ch);
-            }
-            try
-            {              
-                if (pat == false)
-                {
-                    throw new FormatoPatenteNoValidaException();
-                }
-            }
-            catch(FormatException e)
-            {
-                throw new FormatoPatenteNoValidaException("Patente no valida", e);
-            }
+           
             
         }
         public string VerDetalle()
